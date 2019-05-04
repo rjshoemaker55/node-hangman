@@ -1,20 +1,18 @@
 function Letter (letter) {
-  this.letter = letter,
-  this.guessed = false,
-  this.displayFunc = function() {
+  (this.letter = letter), (this.guessed = false), (this.displayFunc = function () {
     if (this.guessed === true) {
       return this.letter;
     } else {
-      return '_'
+      return '_';
     }
-  }
-  this.checker = function(letterGuess) {
+  });
+  this.checker = function (letterGuess) {
     if (letterGuess === this.letter) {
-      this.guessed = true
+      this.guessed = true;
     } else {
-      this.guessed = false
+      this.guessed = false;
     }
-  }
+  };
 }
 
 module.exports = Letter;
