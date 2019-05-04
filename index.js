@@ -24,21 +24,22 @@ function start () {
     .then (function (response) {
       if (response.newgameinput === 'New Game') {
         currentWord = wordArray[Math.floor (Math.random () * 5)];
-        newGame ();
+        currentWordDisplay = word (currentWord, 0);
+        playGame ();
       } else {
         process.exit ();
       }
     });
 }
 
-function newGame () {
-  console.log (currentWord);
+function playGame () {
+  console.log (currentWordDisplay);
 
   console.log ('');
   console.log ('');
   console.log ('Body Parts Hangman');
   console.log ('');
-  console.log (word (currentWord));
+  console.log (currentWordDisplay);
   console.log ('');
   inquirer
     .prompt ([
@@ -50,7 +51,10 @@ function newGame () {
     ])
     .then (function (response) {
       letterGuess = response.letterguessinput;
-      newGame ();
+      currentWordDisplay = word (currentWord, letterGuess);
+      console.log(letterGuess)
+
+      playGame ();
     });
 }
 
@@ -64,5 +68,3 @@ const wordArray = [
 ];
 
 start ();
-
-module.exports = letterGuess;
